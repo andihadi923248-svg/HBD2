@@ -7,7 +7,7 @@ const CONFIG = {
   // --- Identitas ---
   recipientName: "Saskya Rara Sahasika",
   recipientNickname: "Rara",
-  senderName: "[NAMA_KAMU]",          // ← Ganti dengan namamu
+  senderName: "[HADI P✌️]",          // ← Ganti dengan namamu
 
   // --- Nomor WhatsApp (tanpa + dan spasi, awali dengan kode negara) ---
   whatsappNumber: "6285200000206",    // ← Ganti dengan nomormu
