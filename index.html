@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Untuk Rara 🎂</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+
+  <!-- OG / Meta -->
+  <meta name="description" content="Ada sesuatu spesial buat kamu hari ini — klik dan lihat ya!" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Untuk Rara 🎂" />
+  <meta property="og:description" content="Ada sesuatu spesial buat kamu hari ini — klik dan lihat ya!" />
+  <meta property="og:image"       content="preview.png" />
+  <meta property="og:url"         content="https://your-site.vercel.app" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Untuk Rara 🎂" />
+  <meta name="twitter:description" content="Ada sesuatu spesial buat kamu hari ini." />
+  <meta name="twitter:image"      content="preview.png" />
+
+  <!-- Fonts: Cormorant Garamond (editorial) + Space Mono (dev signature) + Inter (clean body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+<!-- ================================================================
+     MUSIC BUTTON
+     ================================================================ -->
+<!-- ambient decorative layer -->
+<div id="ambient" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+  <span class="star s1">✦</span>
+  <span class="star s2">·</span>
+  <span class="star s3">✦</span>
+  <span class="star s4">·</span>
+</div>
+
+<button id="musicBtn" aria-label="Toggle musik" title="Toggle musik">🎵</button>
+
+<!-- ================================================================
+     SECTION 1 — INTRO
+     ================================================================ -->
+<section id="intro" aria-label="Layar kejutan">
+  <p class="intro-eyebrow">— untukmu —</p>
+
+  <!-- CSS Envelope -->
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Klik untuk membuka">
+    <div class="env-body">
+      <div class="env-flap"></div>
+      <div class="env-bottom"></div>
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-letter"></div>
+    </div>
+  </div>
+
+  <p class="intro-text">satu ucapan<br />buat <em data-nick>Rara</em></p>
+
+  <button class="btn-open" type="button" id="btnOpen">
+    buka <span class="arrow">→</span>
+  </button>
+</section>
+
+<!-- ================================================================
+     SECTION 2 — HERO
+     ================================================================ -->
+<section id="hero" aria-label="Ucapan ulang tahun">
+  <div class="hero-inner">
+    <!-- Monospace meta line -->
+    <div class="hero-meta" id="hero-meta">
+      <div class="hero-meta-rule"></div>
+      <span class="hero-meta-text">HBD · <span data-nick>RARA</span> · 2026</span>
+      <div class="hero-meta-rule"></div>
+    </div>
+
+    <!-- Big editorial title -->
+    <h1 class="hero-title" id="hero-title">
+      selamat<br />
+      ulang tahun,<br />
+      <span class="hero-name" id="heroName" data-name>Saskya Rara Sahasika</span>.
+    </h1>
+
+    <p class="hero-sub" id="hero-sub">
+      dari jauh — tapi tulus. semoga hari ini terasa baik buat kamu.
+    </p>
+
+    <!-- Scroll cue -->
+    <div class="hero-scroll" id="hero-scroll">
+      scroll ke bawah
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION 3 — CAKE
+     ================================================================ -->
+<section id="cake-section" aria-label="Tiup lilin">
+  <p class="section-tag reveal">02 / boleh minta sesuatu?</p>
+
+  <h2 class="cake-title reveal">
+    pikirkan satu hal<br />
+    lalu tiup lilinnya 🕯️
+  </h2>
+
+  <!-- Candles built by JS -->
+  <div class="cake-wrap">
+    <div class="candles" id="candlesContainer" aria-label="Lilin ulang tahun"></div>
+
+    <!-- Cake — terracotta tiers -->
+    <div class="cake-tiers" aria-hidden="true">
+      <div class="tier tier-1">✦</div>
+      <div class="tier tier-2">🎂</div>
+      <div class="tier tier-3">buat rara</div>
+    </div>
+    <div class="cake-plate" aria-hidden="true"></div>
+  </div>
+
+  <p class="blow-hint reveal" id="blowHint">
+    🎤 tiup via mic &nbsp;·&nbsp; atau tap lilinnya langsung
+  </p>
+  <button class="btn-mic reveal" id="btnMic" type="button">
+    aktifkan mikrofon
+  </button>
+
+  <p class="cake-wish" id="cakeWish" role="alert">
+    semoga beneran kejadian ya harapannya ✨
+  </p>
+</section>
+
+<!-- ================================================================
+     SECTION 4 — CARDS
+     ================================================================ -->
+<section id="cards-section" aria-label="Kartu ucapan">
+  <p class="section-tag reveal">03 / titip doa kecil</p>
+  <h2 class="cards-title reveal">doa-doa kecil, dari jauh</h2>
+
+  <!-- Cards + dots built by JS -->
+  <div class="cards-track" id="cardsTrack" role="list"></div>
+  <div class="cards-nav"   id="cardsDots"  role="tablist"></div>
+</section>
+
+<!-- ================================================================
+     SECTION 5 — PERSONAL MESSAGE (dark background)
+     ================================================================ -->
+<section id="personal" aria-label="Pesan personal">
+  <p class="personal-eyebrow reveal">04 / catatan kecil</p>
+
+  <div class="personal-card reveal" aria-label="Pesan dari pengirim">
+    <p class="personal-text" data-msg>
+      Aku sadar ini agak aneh — kita udah lama saling tahu, tapi baru sekarang bisa ngobrol.
+      Aku nggak mau kelewat batas. Cuma pengen bilang: selamat ulang tahun, Rara.
+      Semoga tahun ini lebih ringan, lebih baik, dan kamu selalu dikelilingi orang yang beneran baik.
+      Sehat terus ya.
+    </p>
+
+    <div class="personal-sig">
+      <div class="personal-sig-rule"></div>
+      <span class="personal-sig-name" data-sender>[NAMA_KAMU]</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SECTION 5.5 — PHOTOS
+     ================================================================ -->
+<section id="photos" aria-label="Foto Rara">
+  <p class="section-tag reveal">05 / momen</p>
+  <h2 class="photos-title reveal">jejak-jejak kecil</h2>
+  <p class="photos-sub reveal">yang kebawa sampai di sini</p>
+
+  <div class="photos-grid">
+    <figure class="photo-item photo-hero reveal">
+      <img src="photos/rara-1.jpg" alt="Rara dalam seragam marching band" loading="lazy" width="900" height="1200" />
+      <figcaption class="photo-cap">satu momen di panggung</figcaption>
+    </figure>
+    <figure class="photo-item photo-tall reveal">
+      <img src="photos/rara-2.jpg" alt="Rara duduk di bawah pohon" loading="lazy" width="900" height="1200" />
+      <figcaption class="photo-cap">siang yang tenang</figcaption>
+    </figure>
+    <figure class="photo-item photo-wide reveal">
+      <img src="photos/rara-3.jpg" alt="Rara melihat sunset di tepi danau" loading="lazy" width="900" height="675" />
+      <figcaption class="photo-cap">menunggu matahari turun</figcaption>
+    </figure>
+    <figure class="photo-item photo-sq reveal">
+      <img src="photos/rara-4.jpg" alt="Rara dengan topi camouflage" loading="lazy" width="900" height="1125" />
+      <figcaption class="photo-cap">di antara piala</figcaption>
+    </figure>
+    <figure class="photo-item photo-polaroid reveal">
+      <img src="photos/rara-5.jpg" alt="Rara membawa kue ulang tahun" loading="lazy" width="900" height="1125" />
+      <figcaption class="photo-cap">ulang tahun dengan kue</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION 6 — GIFT BOXES
+     ================================================================ -->
+<section id="fun-section" aria-label="Pilih kado">
+  <p class="section-tag reveal">06 / satu lagi</p>
+  <h2 class="fun-title reveal">pilih satu kado</h2>
+  <p class="fun-sub reveal">isinya beda-beda, tapi semuanya tulus 🤍</p>
+
+  <!-- Built by JS -->
+  <div class="gift-boxes" id="giftBoxesContainer" role="group"></div>
+
+  <!-- Reveal -->
+  <div class="gift-reveal" id="giftReveal" role="region" aria-live="polite">
+    <span class="gift-reveal-label">isi kado</span>
+    <div class="gift-reveal-emoji" id="revealEmoji"></div>
+    <h3 class="gift-reveal-title" id="revealTitle"></h3>
+    <p  class="gift-reveal-text"  id="revealText"></p>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION — GENERATOR HARAPAN / PESAN ACAK
+     ================================================================ -->
+<section id="generator-section" aria-label="Generator Pesan">
+  <p class="section-tag reveal">06.5 / iseng tapi seru</p>
+  <h2 class="generator-title reveal">pencet buat ambil pesan acak 🎲</h2>
+  <p class="generator-sub reveal">setiap diklik, ada aja hal random yang muncul buat hari ini</p>
+
+  <div class="generator-box reveal">
+    <div class="generator-display" id="generatorDisplay">
+      <span class="gen-icon" id="genIcon">✨</span>
+      <p id="genText">Tekan tombol di bawah untuk baca pesan acak hari ini...</p>
+    </div>
+    <button class="btn-primary" id="btnGen" type="button">Ambil Pesan Lagi 🔀</button>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION — KAPSUL WAKTU / HARAPAN TAHUN INI
+     ================================================================ -->
+<section id="capsule-section" aria-label="Kapsul Harapan">
+  <p class="section-tag reveal">06.8 / titip harapanmu</p>
+  <h2 class="capsule-title reveal">tulis satu harapan buat tahun ini ✍️</h2>
+  <p class="capsule-sub reveal">cuma kamu yang baca — tersimpan di browser kamu</p>
+
+  <div class="capsule-box reveal">
+    <textarea id="capsuleInput" rows="3" placeholder="tulis harapan atau hal yang pengen kamu capai tahun ini..."></textarea>
+    <div class="capsule-actions">
+      <button class="btn-secondary" id="btnSaveCapsule" type="button">simpan harapan 🔒</button>
+      <button class="btn-secondary" id="btnClearCapsule" type="button" style="display:none;">hapus</button>
+    </div>
+    <p class="capsule-saved-msg" id="capsuleSavedMsg" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ================================================================
+     SECTION 7 — CLOSING
+     ================================================================ -->
+<section id="closing" aria-label="Penutup">
+  <span class="closing-num reveal">07 / penutup</span>
+
+  <h2 class="closing-title reveal">
+    sekali lagi —<br />
+    selamat ulang<br />
+    tahun, <span data-nick>Rara</span>.
+  </h2>
+
+  <div class="closing-rule reveal" aria-hidden="true"></div>
+
+  <p class="closing-sub reveal">
+    cukup ini aja. semoga harinya ringan, ya.
+  </p>
+
+  <div class="closing-btns reveal">
+    <button class="btn-primary"   id="btnShare" type="button">↗ share ke temen</button>
+    <button class="btn-secondary" id="btnWA"    type="button">↩ balas ucapan</button>
+  </div>
+
+  <p style="margin-top: 56px; font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.1em; opacity: 0.5;">
+    dibuat dengan sepenuh hati —
+  </p>
+</section>
+
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- Easter Egg -->
+<div class="easter-banner" id="easterBanner" role="dialog" aria-modal="true">
+  <div class="easter-card">
+    <span class="easter-mono">// hidden</span>
+    <div class="easter-emoji">😳</div>
+    <h3 class="easter-title">lah, nemu ini dari mana</h3>
+    <p class="easter-text" id="easterMsg">
+      Hah?! Kok bisa nemu ini 😭 Yaudah, bonus doa: semoga hal random yang kamu khawatirin ternyata nggak kejadian. Happy Birthday, Rara! 🎊
+    </p>
+    <button class="easter-close" id="easterClose" type="button">hehe makasih 🎉</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="main.js"></script>
+<script>
+  // Fallback: tombol buka harus selalu bisa diklik
+  (function () {
+    function forceOpen() {
+      var intro = document.getElementById('intro');
+      if (!intro) return;
+      intro.classList.add('is-closing');
+      intro.classList.add('hidden');
+      document.body.style.overflow = '';
+      ['hero-meta', 'hero-title', 'hero-sub', 'hero-scroll'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('visible');
+      });
+      var music = document.getElementById('musicBtn');
+      if (music) music.style.display = 'flex';
+    }
+    function onOpen(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      setTimeout(function () {
+        var intro = document.getElementById('intro');
+        if (intro && !intro.classList.contains('hidden')) forceOpen();
+      }, 100);
+    }
+    function wire() {
+      var btn = document.getElementById('btnOpen');
+      var env = document.getElementById('envelope');
+      if (btn) btn.addEventListener('click', onOpen);
+      if (env) {
+        env.addEventListener('click', onOpen);
+        env.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') onOpen(e);
+        });
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wire);
+    } else {
+      wire();
+    }
+  })();
+</script>
+
+</body>
+</html>

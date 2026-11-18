@@ -1,0 +1,9 @@
+{
+  "name": "hbd-rara",
+  "version": "1.0.0",
+  "description": "Birthday website for Rara — static HTML/CSS/JS",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "preview": "npx serve . -p 3000"
+  }
+}

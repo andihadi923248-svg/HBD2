@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Preview Image — Rara</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #1C1510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 16px;
+    }
+    canvas { border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+    button {
+      padding: 12px 28px;
+      border: 1px solid rgba(250,247,242,0.2);
+      border-radius: 2px;
+      background: transparent;
+      color: #FAF7F2;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+    button:hover { background: rgba(250,247,242,0.06); }
+  </style>
+</head>
+<body>
+  <canvas id="c" width="1200" height="630"></canvas>
+  <button onclick="download()">Download preview.png</button>
+  <script>
+    const c = document.getElementById('c');
+    const ctx = c.getContext('2d');
+    const W = 1200, H = 630;
+
+    // Warm cream background
+    ctx.fillStyle = '#FAF7F2';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle rule lines
+    ctx.strokeStyle = '#E0D8CE';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(80, 80); ctx.lineTo(W - 80, 80);
+    ctx.moveTo(80, H - 80); ctx.lineTo(W - 80, H - 80);
+    ctx.stroke();
+
+    // Accent bar left
+    ctx.fillStyle = '#D4603A';
+    ctx.fillRect(0, 0, 8, H);
+
+    // Eyebrow
+    ctx.fillStyle = '#9C8070';
+    ctx.font = '14px "Courier New", monospace';
+    ctx.textAlign = 'center';
+    ctx.letterSpacing = '0.2em';
+    ctx.fillText('H B D  ·  2 0 2 6', W / 2, 160);
+
+    // Main title
+    ctx.fillStyle = '#1C1510';
+    ctx.font = 'italic 72px Georgia, serif';
+    ctx.fillText('Untuk Rara', W / 2, 280);
+
+    // Accent name
+    ctx.fillStyle = '#D4603A';
+    ctx.font = 'italic 48px Georgia, serif';
+    ctx.fillText('Saskya Rara Sahasika', W / 2, 360);
+
+    // Sub
+    ctx.fillStyle = '#5C4038';
+    ctx.font = '22px system-ui, sans-serif';
+    ctx.fillText('ada sesuatu spesial buat kamu hari ini', W / 2, 440);
+
+    // Bottom mark
+    ctx.fillStyle = '#C8923A';
+    ctx.font = '18px "Courier New", monospace';
+    ctx.fillText('— klik untuk membuka —', W / 2, 540);
+
+    function download() {
+      const a = document.createElement('a');
+      a.download = 'preview.png';
+      a.href = c.toDataURL('image/png');
+      a.click();
+    }
+  </script>
+</body>
+</html>
